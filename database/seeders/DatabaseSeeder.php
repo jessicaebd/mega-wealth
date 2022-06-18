@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\PropertyStatus;
+use App\Models\SalesType;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            RoleSeeder::class,
+            UserSeeder::class,
+            PropertyStatusSeeder::class,
+            BuildingTypeSeeder::class,
+            SalesTypeSeeder::class,
+            PropertySeeder::class,
+            OfficeSeeder::class
+        ]);
+        // tapi seeder untuk pivot class(cart)-nya belum
     }
 }
