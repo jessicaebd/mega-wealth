@@ -3,8 +3,8 @@
 @section('content')
     <div class="container py-4">
         <div class="row d-flex align-items-center">
-            <div class="col-6">
-                <img src="images/login.png" alt="">
+            <div class="col-6 p-5">
+                <img src="images/login.png" alt="" width="80%">
             </div>
 
             <div class="col-6">
