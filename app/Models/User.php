@@ -15,6 +15,14 @@ class User extends Authenticatable
     protected $guarded = ['id'];
     public $incrementing = false;
 
+    protected $fillable = [
+        'id',
+        'name',
+        'email',
+        'password',
+        'role_id',
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -33,13 +41,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    */
+     */
 
-    public function role() {
+    public function role()
+    {
         return $this->belongsTo(Role::class);
     }
 
-    public function properties() {
+    public function properties()
+    {
         return $this->belongsToMany(Property::class)
             ->withPivot('add_date');
     }
