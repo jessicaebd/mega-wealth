@@ -14,7 +14,13 @@
                     <form action="{{ route('login') }}" method="POST">
                         @csrf
 
-                        <div class="mb-4">
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
+                        <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
                             <input type="email" class="form-control" id="email" name="email"
                                 placeholder="Enter your email address here...">

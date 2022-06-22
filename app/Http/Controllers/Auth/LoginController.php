@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -15,23 +15,24 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required|min:8'
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
-        if (auth()->attempt($credentials, $request->get('remember'))) {
-            // if ($request->has('remember')) {
-            //     Cookie::queue('loginCookie', $request->input('email'), 300);
-            // }
-            return redirect()->route('home');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('home');
         }
-        return redirect()->back()->with('error', 'Something went wrong');
+
+        return redirect()->back()->with('error', 'Login Failed!');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        auth()->logout();
-        return redirect()->route('login');
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('login');
     }
 }

@@ -19,7 +19,7 @@ class RegisterController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email:dns|unique:users',
             'password' => 'required|min:8',
             'confirmPassword' => 'required|same:password'
         ]);
@@ -36,6 +36,6 @@ class RegisterController extends Controller
             return redirect()->route('home');
         }
 
-        return redirect()->back()->with('error', 'Something went wrong');
+        return redirect()->back()->with('error', 'Register Failed!');
     }
 }
