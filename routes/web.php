@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\Office;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +28,9 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('register', [RegisterController::class, 'register'])->name('register');
     // Route::get('logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 });
+
+Route::get('/about', function () {
+    return view('about.index', [
+        'offices' => Office::all(),
+    ]);
+})->name('about-us');
