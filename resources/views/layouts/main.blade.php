@@ -12,6 +12,10 @@
 
     {{-- Custom CSS --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    @yield('style')
+
+    {{-- Favicon --}}
+    <link rel="icon" href="{{ asset('images/favicon.png') }}">
 
     <title>megAWealth</title>
 </head>

@@ -20,7 +20,7 @@ class OfficeController extends Controller
     }
 
     public function about() {
-        $offices = Office::all();
+        $offices = Office::paginate(5);
         return view('about.index', compact('offices'));
     }
 
@@ -64,7 +64,7 @@ class OfficeController extends Controller
         $office->image = $imageName;
         $office->save();
 
-        return redirect()->route('manage-office');
+        return redirect()->route('manage_office')->withSuccess('New office added');
     }    
 
     /**
@@ -124,7 +124,7 @@ class OfficeController extends Controller
         
         $office->save();
 
-        return redirect()->route('manage-office');
+        return redirect()->route('manage_office')->withSuccess('Office data updated');
     }
 
     /**
@@ -137,6 +137,6 @@ class OfficeController extends Controller
     {
         // Office::find($id)->delete();
         $office->delete();
-        return redirect()->route('manage-office')->withSuccess('Office deleted');
+        return redirect()->route('manage_office')->withSuccess('Office deleted');
     }
 }

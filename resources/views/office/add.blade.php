@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid d-flex justify-container-center pt-5">
         <div class="container " style="width: 800px">
-            <form action="{{ route('store-office') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('store_office') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <h1 class="h3 text-center mb-4">Add Office</h1>
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="d-flex justify-content-end mb-4">
-                    <a href="{{ route('manage-office') }}" class="btn btn-secondary me-2">Discard</a>
+                    <a href="{{ route('manage_office') }}" class="btn btn-secondary me-2">Discard</a>
                     <button type="submit" class="btn btn-primary">Add Office</button>
                 </div>
             </form>

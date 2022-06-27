@@ -12,3 +12,45 @@ body {
 a {
 	text-decoration: none;
 }
+
+.btn-primary {
+    background-color: #DE1262;
+    border-color: #DE1262;
+}
+
+.btn-primary:hover {
+    background-color: #c20054;
+    border-color: #c20054;
+}
+
+/* .btn-danger {
+    background-color: #999;
+    border-color: #999;
+}
+
+.btn-danger:hover {
+    background-color: #777;
+    border-color: #777;
+} */
+
+.btn-outline-primary {
+    color: #DE1262;
+    background-color: rgb(250, 250, 250);
+    border-color: #DE1262;
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    border-color: #DE1262;
+    background-color: #DE1262;
+}
+
+.page-item .page-link {
+    color: #999;
+}
+
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #999;
+    border-color: #999;
+}
