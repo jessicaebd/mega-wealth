@@ -16,7 +16,7 @@ class OfficeFactory extends Factory
     {
         return [
             'id' => Str::uuid(),
-            'name' => $this->faker->company(),
+            'name' => $this->faker->company() . ' Office',
             'address' => $this->faker->streetAddress() . ', ' . $this->faker->countryCode(),
             'contact_name' => $this->faker->name(),
             'phone' => $this->faker->phoneNumber(),

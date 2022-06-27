@@ -21,6 +21,7 @@ class CreateOfficesTable extends Migration
             $table->string('phone');
             $table->string('image');
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 
