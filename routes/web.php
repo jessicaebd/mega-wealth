@@ -26,7 +26,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('register', [RegisterController::class, 'index'])->name('register_page');
     Route::post('login', [LoginController::class, 'login'])->name('login');
     Route::post('register', [RegisterController::class, 'register'])->name('register');
-    // Route::get('logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+    Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 });
 
 Route::get('/about', function () {
