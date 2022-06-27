@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'id' => Str::uuid(),
             'name' => 'Admin',
             'email' => 'admin@example.com',
-            'password' => Hash::make('admin'),
+            'password' => Hash::make('adminadmin'),
             'role_id' => 1
         ]);
 
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
             'id' => Str::uuid(),
             'name' => 'Bdmin',
             'email' => 'bdmin@example.com',
-            'password' => Hash::make('bdmin'),
+            'password' => Hash::make('bdminbdmin'),
             'role_id' => 1
         ]);
 

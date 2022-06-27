@@ -9,22 +9,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">About Us</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('about_us') }}">About Us</a>
                 </li>
 
                 @if (Illuminate\Support\Facades\Gate::allows('isAdmin'))
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Manage Offices</a>
+                        <a class="nav-link" href="{{ route('manage_office') }}">Manage Offices</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Manage Real Estates</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                     </li>
                     
                 @elseif (Illuminate\Support\Facades\Gate::allows('isMember'))
@@ -39,7 +39,7 @@
                         <a class="nav-link" href="#">Cart</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                     </li>
                     
                 @else
@@ -51,10 +51,10 @@
                         <a class="nav-link" href="#">Rent</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        <a class="nav-link" href="{{ route('login_page') }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Register</a>
+                        <a class="nav-link" href="{{ route('register_page') }}">Register</a>
                     </li>
 
                 @endif
