@@ -19,6 +19,11 @@ class OfficeController extends Controller
         return view('office.index', compact('offices'));
     }
 
+    public function about() {
+        $offices = Office::all();
+        return view('about.index', compact('offices'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
