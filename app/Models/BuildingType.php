@@ -14,4 +14,14 @@ class BuildingType extends Model
     public function properties() {
         return $this->hasMany(Property::class);
     }
+
+    public function getNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = strtolower($value);
+    }
 }

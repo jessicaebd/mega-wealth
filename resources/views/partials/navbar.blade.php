@@ -21,7 +21,7 @@
                         <a class="nav-link" href="{{ route('manage_office') }}">Manage Offices</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Manage Real Estates</a>
+                        <a class="nav-link" href="{{ route('manage_property') }}">Manage Real Estates</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}">Logout</a>

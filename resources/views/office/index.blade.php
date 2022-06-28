@@ -36,7 +36,7 @@
                                             class="me-2">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-secondary">Delete</button>
+                                            <button type="submit" class="btn btn-outline-danger">Delete</button>
                                         </form>
                                         <a href="{{ route('update_office_form', $office->id) }}"
                                             class="btn btn-primary">Update</a>
@@ -51,7 +51,7 @@
 
             </div>
 
-            <div class="d-flex flex-row justify-content-center mt-3">
+            <div class="d-flex flex-row justify-content-center mt-3 pb-3">
                 {{ $offices->links() }}
             </div>
 

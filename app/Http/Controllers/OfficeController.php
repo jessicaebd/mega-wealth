@@ -137,6 +137,6 @@ class OfficeController extends Controller
     {
         // Office::find($id)->delete();
         $office->delete();
-        return redirect()->route('manage_office')->withSuccess('Office deleted');
+        return redirect()->back()->withSuccess('Office deleted');
     }
 }

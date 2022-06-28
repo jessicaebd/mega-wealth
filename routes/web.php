@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\PropertyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,21 @@ Route::prefix('admin/office')
         Route::get('/edit/{office}', 'edit')->name('update_office_form');
         Route::put('/edit', 'update')->name('update_office');
         Route::delete('/delete/{office}', 'destroy')->name('delete_office');
+
+    });
+
+Route::prefix('admin/property')
+    ->controller(PropertyController::class)
+    ->middleware('AdminMiddleware')
+    ->group(function () {
+
+        Route::get('/', 'index')->name('manage_property');
+        Route::get('/add', 'create')->name('add_property');
+        Route::post('/add', 'store')->name('store_property');
+        Route::get('/edit/{property}', 'edit')->name('update_property_form');
+        Route::put('/edit', 'update')->name('update_property');
+        Route::delete('/delete/{property}', 'destroy')->name('delete_property');
+        Route::post('/finish', 'finish')->name('finish_property');
 
     });
 

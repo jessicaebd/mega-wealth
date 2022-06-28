@@ -22,6 +22,7 @@ class CreatePropertiesTable extends Migration
             $table->foreignId('building_type_id')->constrained();
             $table->foreignId('sales_type_id')->constrained();
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

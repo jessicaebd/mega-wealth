@@ -15,7 +15,7 @@
     @yield('style')
 
     {{-- Favicon --}}
-    <link rel="icon" href="{{ asset('images/favicon.png') }}">
+    <link rel="icon" href="{{ asset('images/favicon2.png') }}">
 
     <title>megAWealth</title>
 </head>

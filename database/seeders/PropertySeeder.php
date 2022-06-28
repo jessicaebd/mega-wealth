@@ -24,10 +24,12 @@ class PropertySeeder extends Seeder
             ->sequence(fn ($sequence) => ['image' => 'property'.($sequence->index+1).'jpg'])
             ->create();
 
-        foreach (Property::all() as $property) {
+        // untuk property yang statusnya added to cart, kita bikin entry pivot tablenya
+        foreach (Property::where('property_status_id', 2)->get() as $property) {
             $maxUser = User::count() - 2; // jumlah admin
             $addedUsers = rand(0, $maxUser);
             
+            // admin tidak bisa add to cart
             $users = User::where('role_id', '!=', 1)->get()->random($addedUsers);
             
             foreach ($users as $user) {
