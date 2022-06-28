@@ -6,6 +6,7 @@ use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,15 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('register', [RegisterController::class, 'register'])->name('register');
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 });
+
+// area khusus member
+Route::controller(UserController::class)
+    ->middleware('MemberMiddleware')
+    ->group(function() {
+        Route::get('/cart', 'cartIndex')->name('show_cart');
+        Route::post('/cart', 'cartDiscard')->name('discard_cart_item');
+        Route::get('/checkout', 'cartCheckout')->name('checkout_cart_items');
+    });
 
 Route::prefix('admin/office')
     ->controller(OfficeController::class)
