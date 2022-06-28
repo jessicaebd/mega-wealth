@@ -17,19 +17,23 @@ class Property extends Model
         'id' => 'string'
     ];
 
-    public function propertyStatus() {
+    public function propertyStatus()
+    {
         return $this->belongsTo(PropertyStatus::class);
     }
 
-    public function salesType() {
+    public function salesType()
+    {
         return $this->belongsTo(SalesType::class);
     }
 
-    public function buildingType() {
+    public function buildingType()
+    {
         return $this->belongsTo(BuildingType::class);
     }
 
-    public function users() {
+    public function users()
+    {
         return $this->belongsToMany(User::class)
             ->withPivot('add_date');
     }

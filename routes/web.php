@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PropertyController;
 
 /*
@@ -18,9 +19,11 @@ use App\Http\Controllers\PropertyController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::controller(PageController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('home');
+        Route::get('/search', 'search')->name('search');
+    });
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('login', [LoginController::class, 'index'])->name('login_page');
@@ -41,7 +44,6 @@ Route::prefix('admin/office')
         Route::get('/edit/{office}', 'edit')->name('update_office_form');
         Route::put('/edit', 'update')->name('update_office');
         Route::delete('/delete/{office}', 'destroy')->name('delete_office');
-
     });
 
 Route::prefix('admin/property')
@@ -56,7 +58,6 @@ Route::prefix('admin/property')
         Route::put('/edit', 'update')->name('update_property');
         Route::delete('/delete/{property}', 'destroy')->name('delete_property');
         Route::post('/finish', 'finish')->name('finish_property');
-
     });
 
 Route::get('/about', [OfficeController::class, 'about'])->name('about_us');
