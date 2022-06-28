@@ -3,6 +3,10 @@
 In this page, guest can Login or Register to the page, this page can be accessed by all of the users. Logged in member will have extra button on the navigation bar, which is Cart and Logout. Meanwhile, admin will have extra button which is Manage Company, Manage Real Estate, and Logout. --}}
 
 @section('content')
+    @if (session('success'))
+        <div class="alert alert-success" role="alert">{{ session('success') }}</div>
+    @endif
+    
     <div class="container mt-5">
         <h1>Find Your Future Home</h1>
 

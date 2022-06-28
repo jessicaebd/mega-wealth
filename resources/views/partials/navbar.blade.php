@@ -36,7 +36,7 @@
                         <a class="nav-link" href="#">Rent</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cart</a>
+                        <a class="nav-link" href="{{ route('show_cart') }}">Cart</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}">Logout</a>

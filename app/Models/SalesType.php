@@ -15,10 +15,11 @@ class SalesType extends Model
         return $this->hasMany(Property::class);
     }
 
-    public function getNameAttribute($value)
-    {
-        return ucfirst($value);
-    }
+    // ga jadi dipakai, misal pas perbandingan, harus == 'Rent', gabisa =='rent'
+    // public function getNameAttribute($value)
+    // {
+    //     return ucfirst($value);
+    // }
 
     public function setNameAttribute($value)
     {
