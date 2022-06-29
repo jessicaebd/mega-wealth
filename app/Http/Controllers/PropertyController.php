@@ -18,13 +18,13 @@ class PropertyController extends Controller
 
     public function buy()
     {
-        $properties = Property::where('sales_type_id', '=', SalesType::where('name', '=', 'buy')->first()->id)->paginate(4);
+        $properties = Property::where('sales_type_id', '=', SalesType::where('name', '=', 'Buy')->first()->id)->paginate(4);
         return view('property.buy', compact('properties'));
     }
 
     public function rent()
     {
-        $properties = Property::where('sales_type_id', '=', SalesType::where('name', '=', 'rent')->first()->id)->paginate(4);
+        $properties = Property::where('sales_type_id', '=', SalesType::where('name', '=', 'Rent')->first()->id)->paginate(4);
         return view('property.rent', compact('properties'));
     }
 
