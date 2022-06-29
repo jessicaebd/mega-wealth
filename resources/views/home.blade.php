@@ -6,7 +6,7 @@ In this page, guest can Login or Register to the page, this page can be accessed
     @if (session('success'))
         <div class="alert alert-success" role="alert">{{ session('success') }}</div>
     @endif
-    
+
     <div class="container mt-5">
         <h1>Find Your Future Home</h1>
 
@@ -28,19 +28,19 @@ In this page, guest can Login or Register to the page, this page can be accessed
         {{-- Buy, Rent, About Us --}}
         <div class="row mt-5">
             <div class="col-md-4 d-flex justify-content-center align-content-center">
-                <a href="">
+                <a href="{{ route('buy') }}">
                     <img src="/images/login.png" alt="Buy" class="img-fluid" width="150" height="150">
                     <h5 class="text-center p-3">Buy</h5>
                 </a>
             </div>
             <div class="col-md-4 d-flex justify-content-center align-content-center">
-                <a href="">
+                <a href="{{ route('rent') }}">
                     <img src="/images/login.png" alt="Rent" class="img-fluid" width="150" height="150">
                     <h5 class="text-center p-3">Rent</h5>
                 </a>
             </div>
             <div class="col-md-4 d-flex justify-content-center align-content-center">
-                <a href="">
+                <a href="{{ route('about-us') }}">
                     <img src="/images/login.png" alt="About Us" class="img-fluid" width="150" height="150">
                     <h5 class="text-center p-3">About Us</h5>
                 </a>

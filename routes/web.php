@@ -26,6 +26,10 @@ Route::controller(PageController::class)
         Route::get('/search', 'search')->name('search');
     });
 
+Route::get('/property/buy', [PropertyController::class, 'buy'])->name('buy');
+Route::get('/property/buy', [PropertyController::class, 'rent'])->name('rent');
+Route::get('/about', [OfficeController::class, 'about'])->name('about_us');
+
 Route::group(['prefix' => 'auth'], function () {
     Route::get('login', [LoginController::class, 'index'])->name('login_page');
     Route::post('login', [LoginController::class, 'login'])->name('login');
@@ -37,7 +41,7 @@ Route::group(['prefix' => 'auth'], function () {
 // area khusus member
 Route::controller(UserController::class)
     ->middleware('MemberMiddleware')
-    ->group(function() {
+    ->group(function () {
         Route::get('/cart', 'cartIndex')->name('show_cart');
         Route::post('/cart', 'cartDiscard')->name('discard_cart_item');
         Route::get('/checkout', 'cartCheckout')->name('checkout_cart_items');
@@ -69,5 +73,3 @@ Route::prefix('admin/property')
         Route::delete('/delete/{property}', 'destroy')->name('delete_property');
         Route::post('/finish', 'finish')->name('finish_property');
     });
-
-Route::get('/about', [OfficeController::class, 'about'])->name('about_us');

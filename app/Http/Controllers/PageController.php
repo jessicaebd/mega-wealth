@@ -28,6 +28,7 @@ class PageController extends Controller
         }
 
 
+        // dd($properties);
         $search = request('search');
         return view('search', compact('properties', 'search'));
     }
