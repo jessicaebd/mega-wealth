@@ -5,51 +5,51 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse d-flex" id="navbarNav">
-            <a class="navbar-brand mt-2 mt-lg-0 " href="/">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <a class="navbar-brand mt-2 mt-lg-0 " href="{{ route('home') }}">
                 <span class="text-pink fw-bold">megAWealth</span>
             </a>
 
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('about_us') }}">About Us</a>
+                    <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" aria-current="page"
+                        href="/">Home</a>
                 </li>
 
                 @if (Illuminate\Support\Facades\Gate::allows('isAdmin'))
-                    <div class="dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="adminManageDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Manage
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="adminManageDropdown">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('manage_office') }}">Manage Offices</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('manage_property') }}">Manage Real Estates</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('manage_office') ? 'active' : '' }}"
+                            href="{{ route('manage_office') }}">Manage Offices</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('manage_property') ? 'active' : '' }}"
+                            href="{{ route('manage_property') }}">Manage Real Estates</a>
+                    </li>
                 @elseif (Illuminate\Support\Facades\Gate::allows('isMember'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('buy') }}">Buy</a>
+                        <a class="nav-link {{ request()->routeIs('about_us') ? 'active' : '' }}" aria-current="page"
+                            href="{{ route('about_us') }}">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('rent') }}">Rent</a>
+                        <a class="nav-link {{ request()->routeIs('buy') ? 'active' : '' }}"
+                            href="{{ route('buy') }}">Buy</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('show_cart') }}">Cart</a>
+                        <a class="nav-link {{ request()->routeIs('rent') ? 'active' : '' }}"
+                            href="{{ route('rent') }}">Rent</a>
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('buy') }}">Buy</a>
+                        <a class="nav-link {{ request()->routeIs('about_us') ? 'active' : '' }}" aria-current="page"
+                            href="{{ route('about_us') }}">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('rent') }}">Rent</a>
+                        <a class="nav-link {{ request()->routeIs('buy') ? 'active' : '' }}"
+                            href="{{ route('buy') }}">Buy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('rent') ? 'active' : '' }}"
+                            href="{{ route('rent') }}">Rent</a>
                     </li>
                 @endif
             </ul>

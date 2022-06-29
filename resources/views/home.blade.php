@@ -1,36 +1,34 @@
 @extends('layouts.main')
-{{-- This page is where the user can search the real estate that the user wants. All user can access this page. The user will be able to search by property location, property type, and type of sales. The search results will be displayed in a separate page. The user can also navigate to buy page, rent page, or about us page by clicking the icons below the search bar.
-In this page, guest can Login or Register to the page, this page can be accessed by all of the users. Logged in member will have extra button on the navigation bar, which is Cart and Logout. Meanwhile, admin will have extra button which is Manage Company, Manage Real Estate, and Logout. --}}
 
 @section('content')
     @if (session('success'))
         <div class="alert alert-success" role="alert">{{ session('success') }}</div>
     @endif
 
-    <div class="container-fluid">
-        <div class="header px-4 py-4 my-4 text-center d-flex flex-column justify-content-center align-content-center">
-            <h1 class="display-5 fw-bold text-pink">Find Your Future Home</h1>
+    <div class="header px-4 py-4 mb-5 text-center d-flex flex-column justify-content-center align-content-center">
+        <h1 class="display-5 fw-bold text-pink">Find Your Future Home</h1>
 
-            <div class="col-md-10 mx-auto">
-                {{-- Search property by location, type, type of sales --}}
-                <div class="row">
-                    <div class="col-md-12">
-                        <form action="{{ route('search') }}">
-                            <div class="input-group">
-                                <input type="text" class="form-control"
-                                    placeholder="Enter a City, Property Type, Buy or Rent..." name="search">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary btn-lg px-4 gap-3" type="submit">Go!</button>
-                                </span>
-                            </div>
-                        </form>
-                    </div>
+        {{-- Search property by location, type, type of sales --}}
+        <div class="col-md-10 mx-auto">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="{{ route('search') }}">
+                        <div class="input-group">
+                            <input type="text" class="form-control"
+                                placeholder="Enter a City, Property Type, Buy or Rent..." name="search">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary btn-lg px-4 gap-3" type="submit">Go!</button>
+                            </span>
+                        </div>
+                    </form>
                 </div>
-                {{-- End of Search property by location, type, type of sales --}}
             </div>
         </div>
+        {{-- End of Search property by location, type, type of sales --}}
+    </div>
 
-        {{-- Buy, Rent, About Us --}}
+    {{-- Buy, Rent, About Us --}}
+    <div class="container mt-4">
         <div class="row my-5">
             <div class="col-md-4 d-flex justify-content-center align-content-center grow">
                 <a href="{{ route('buy') }}">
@@ -53,6 +51,6 @@ In this page, guest can Login or Register to the page, this page can be accessed
                 </a>
             </div>
         </div>
-        {{-- End of Buy, Rent, About Us --}}
     </div>
+    {{-- End of Buy, Rent, About Us --}}
 @endsection

@@ -23,12 +23,14 @@ use App\Http\Controllers\UserController;
 Route::controller(PageController::class)
     ->group(function () {
         Route::get('/', 'index')->name('home');
-        Route::get('/search', 'search')->name('search');
-    });
+        Route::get('/home/search', 'search')->name('search');
 
-Route::get('/property/buy', [PropertyController::class, 'buy'])->name('buy');
-Route::get('/property/rent', [PropertyController::class, 'rent'])->name('rent');
-Route::get('/about', [OfficeController::class, 'about'])->name('about_us');
+        Route::middleware('NotAdminMiddleware')->group(function () {
+            Route::get('/home/buy', 'buy')->name('buy');
+            Route::get('/home/rent', 'rent')->name('rent');
+            Route::get('/home/about', 'about')->name('about_us');
+        });
+    });
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('login', [LoginController::class, 'index'])->name('login_page');

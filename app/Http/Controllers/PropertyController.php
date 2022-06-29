@@ -16,18 +16,6 @@ class PropertyController extends Controller
         return view('property.index', compact('properties'));
     }
 
-    public function buy()
-    {
-        $properties = Property::where('sales_type_id', '=', SalesType::where('name', '=', 'Buy')->first()->id)->paginate(4);
-        return view('property.buy', compact('properties'));
-    }
-
-    public function rent()
-    {
-        $properties = Property::where('sales_type_id', '=', SalesType::where('name', '=', 'Rent')->first()->id)->paginate(4);
-        return view('property.rent', compact('properties'));
-    }
-
     public function create()
     {
         return view('property.add');

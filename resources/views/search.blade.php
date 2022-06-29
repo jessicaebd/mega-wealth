@@ -1,11 +1,17 @@
 @extends('layouts.main')
-{{-- This page is accessible for everyone. This page shows the real estate’s detail such as price, address, image, property
-type, and the button to buy or rent. The page will also be paginated to show 4 real estates at a time. If the user has
-already logged in as a member, by clicking the buy or rent button, the user will be able to add the selected real estate
-to their cart. If the user has not logged in, the user will be redirected to the Login Page. --}}
+
 @section('content')
     <div class="container mt-5">
-        <h5 class="fw-bold">Showing Search Result for '{{ $search }}'</h5>
+
+        @if ($message)
+            <div class="alert alert-danger">
+                {{ $message }}
+            </div>
+
+            <h5 class="fw-bold">Showing All Result</h5>
+        @else
+            <h5 class="fw-bold">Showing Search Result for '{{ $search }}'</h5>
+        @endif
 
         <div class="row g-2">
             @foreach ($properties as $property)

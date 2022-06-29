@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class OfficeController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -17,11 +17,6 @@ class OfficeController extends Controller
     {
         $offices = Office::paginate(4);
         return view('office.index', compact('offices'));
-    }
-
-    public function about() {
-        $offices = Office::paginate(5);
-        return view('about.index', compact('offices'));
     }
 
     /**
@@ -49,23 +44,23 @@ class OfficeController extends Controller
             'phone' => 'required',
             'image' => 'required|file|image|mimes:jpg,jpeg,png|max:10000' //10240
         ]);
-    
+
         $office = new Office();
         $office->id = Str::uuid();
         $office->name = $request->input('name');
         $office->address = $request->input('address');
         $office->contact_name = $request->input('contactName');
         $office->phone = $request->input('phone');
-        
+
         $imageExt = $request->image->getClientOriginalExtension();
-        $imageName = substr($office->id, 0, 8)."-".time().$imageExt;
+        $imageName = substr($office->id, 0, 8) . "-" . time() . $imageExt;
         $p = $request->image->storeAs('public/office', $imageName);
-        
+
         $office->image = $imageName;
         $office->save();
 
         return redirect()->route('manage_office')->withSuccess('New office added');
-    }    
+    }
 
     /**
      * Display the specified resource.
@@ -104,24 +99,24 @@ class OfficeController extends Controller
             'contactName' => 'required',
             'phone' => 'required',
         ]);
-        
+
         $office = Office::find($request->input('id'));
         $office->name = $request->input('name');
         $office->address = $request->input('address');
         $office->contact_name = $request->input('contactName');
         $office->phone = $request->input('phone');
 
-        if( $request->image !== NULL ) {
+        if ($request->image !== NULL) {
             $request->validate([
                 'image' => 'required|file|image|mimes:jpg,jpeg,png|max:10000' //10240
             ]);
 
             $imageExt = $request->image->getClientOriginalExtension();
-            $imageName = substr($office->id, 0, 8)."-".time().$imageExt;
+            $imageName = substr($office->id, 0, 8) . "-" . time() . $imageExt;
             $p = $request->image->storeAs('public/office', $imageName);
             $office->image = $imageName;
         }
-        
+
         $office->save();
 
         return redirect()->route('manage_office')->withSuccess('Office data updated');
