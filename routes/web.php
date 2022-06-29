@@ -23,7 +23,7 @@ use App\Http\Controllers\UserController;
 Route::controller(PageController::class)
     ->group(function () {
         Route::get('/', 'index')->name('home');
-        Route::get('/home/search', 'search')->name('search');
+        Route::get('/home/properties', 'search')->name('search');
 
         Route::middleware('NotAdminMiddleware')->group(function () {
             Route::get('/home/buy', 'buy')->name('buy');

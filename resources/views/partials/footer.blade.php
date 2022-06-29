@@ -1,7 +1,7 @@
 <!-- Remove the container if you want to extend the Footer to full width. -->
 <div class="container-fluid mt-5 bg-pink">
     <!-- Footer -->
-    <footer class="text-center text-white">
+    <footer class="text-center text-white bg-pink mt-5">
         <!-- Grid container -->
         <div class="container">
             <!-- Section: Links -->

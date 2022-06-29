@@ -57,9 +57,10 @@
 
         <div class="d-flex align-items-center">
             @if (Illuminate\Support\Facades\Gate::allows('isMember'))
-                <a class="text-reset me-3" href="{{ route('show_cart') }}">
-                    <i class="bi bi-cart-fill fs-5"></i>
-                    <span class="badge rounded-pill badge-notification bg-danger" style="margin-left: -7px;">0</span>
+                <a class="text-reset me-3 position-relative" href="{{ route('show_cart') }}">
+                    <i class="bi bi-cart-fill fs-5 "></i>
+                    <span
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
                     {{-- Ceritanya nampilin jumlah cartnya tp blm nemu crnya --}}
                 </a>
             @endif
