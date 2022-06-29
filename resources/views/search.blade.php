@@ -44,9 +44,9 @@ to their cart. If the user has not logged in, the user will be redirected to the
         </div>
 
         {{-- ! Paginate masih error --}}
-        {{-- <div class="d-flex flex-row justify-content-center mt-3 pb-3">
+        <div class="d-flex flex-row justify-content-center mt-3 pb-3">
             {{ $properties->links() }}
-        </div> --}}
+        </div>
 
     </div>
 @endsection

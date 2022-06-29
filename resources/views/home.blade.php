@@ -28,7 +28,7 @@ In this page, guest can Login or Register to the page, this page can be accessed
         {{-- Buy, Rent, About Us --}}
         <div class="row mt-5">
             <div class="col-md-4 d-flex justify-content-center align-content-center">
-                <a href="{{ route('buy') }}">
+                <a href="/property/buy">
                     <img src="/images/login.png" alt="Buy" class="img-fluid" width="150" height="150">
                     <h5 class="text-center p-3">Buy</h5>
                 </a>
@@ -40,7 +40,7 @@ In this page, guest can Login or Register to the page, this page can be accessed
                 </a>
             </div>
             <div class="col-md-4 d-flex justify-content-center align-content-center">
-                <a href="{{ route('about-us') }}">
+                <a href="{{ route('about_us') }}">
                     <img src="/images/login.png" alt="About Us" class="img-fluid" width="150" height="150">
                     <h5 class="text-center p-3">About Us</h5>
                 </a>
