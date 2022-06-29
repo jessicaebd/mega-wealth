@@ -52,7 +52,7 @@ class PropertyFactory extends Factory
         return $this->state(function (array $attributes) {
             $salesType = SalesType::all()->random();
     
-            if ($salesType->name == 'rent') {
+            if ($salesType->name == 'Rent') {
                 $price = rand(10, 199) * 10;
             } else {
                 $price = rand(1, 99) * 10000;

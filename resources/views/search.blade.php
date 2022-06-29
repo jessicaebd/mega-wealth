@@ -5,7 +5,7 @@ already logged in as a member, by clicking the buy or rent button, the user will
 to their cart. If the user has not logged in, the user will be redirected to the Login Page. --}}
 @section('content')
     <div class="container mt-5">
-        <h5 class="fw-bold">Showing Search Result for {{ $search }}</h5>
+        <h5 class="fw-bold">Showing Search Result for '{{ $search }}'</h5>
 
         <div class="row g-2">
             @foreach ($properties as $property)
@@ -18,7 +18,7 @@ to their cart. If the user has not logged in, the user will be redirected to the
 
                             <div class="my-2">
                                 <h5 class="card-title fw-bold mb-2">
-                                    {{ "$" . $property->price . ($property->salesType->name == 'rent' ? ' / Month' : '') }}
+                                    {{ "$" . $property->price . ($property->salesType->name == 'Rent' ? ' / Month' : '') }}
                                 </h5>
                                 <h6 class="card-subtitle text-muted">{{ $property->location }}</h6>
                             </div>
@@ -32,7 +32,7 @@ to their cart. If the user has not logged in, the user will be redirected to the
 
                                 {{-- ! Middleware Blom: If the user has already logged in as a member, by clicking the buy or rent button, the user will be able to add the selected real estate to their cart. If the user has not logged in, the user will be redirected to the Login Page. --}}
                                 <div class="d-flex flex-row flex-wrap justify-content-center gap-2 action-buttons-wrapper">
-                                    <a href="" class="btn btn-primary">Rent</a>
+                                    <a href="" class="btn btn-primary">{{ $property->salesType->name }}</a>
                                 </div>
                             </div>
 

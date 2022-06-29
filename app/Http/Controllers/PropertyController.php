@@ -47,7 +47,7 @@ class PropertyController extends Controller
         $property->id = Str::uuid();
         $property->location = $request->input('location');
         $property->price = $request->input('price');
-        $property->property_status_id = PropertyStatus::where('name', 'open')->first()->id;
+        $property->property_status_id = PropertyStatus::where('name', 'Open')->first()->id;
         $property->building_type_id = $request->input('buildingType');
         $property->sales_type_id = $request->input('salesType');
 
@@ -112,7 +112,7 @@ class PropertyController extends Controller
     {
         // @dd($request);
         $property = Property::find($request->input('id'));
-        $property->property_status_id = PropertyStatus::where('name', 'completed')->first()->id;
+        $property->property_status_id = PropertyStatus::where('name', 'Completed')->first()->id;
         $property->save();
 
         // hapus entry pivot table yg mengandung property tsb
