@@ -22,7 +22,7 @@
 
                                 <div>
                                     <h5 class="card-title fw-bold mb-2">
-                                        {{ "$" . $item->price . ($item->salesType->name == 'rent' ? ' / Month' : '') }}
+                                        {{ "$" . $item->price . ($item->salesType->name == 'Rent' ? ' / Month' : '') }}
                                     </h5>
                                     <h6 class="card-subtitle fst-italic text-muted">{{ $item->location }}</h6>
                                 </div>
@@ -55,7 +55,10 @@
                 <a href="{{ route('checkout_cart_items') }}" class="btn btn-primary mx-auto">Checkout</a>
             </div>
         @else
-            <p class="mt-4 text-muted">No data in cart yet. <span><a href="{{ route('home') }}">Browse Now</a></span></p>
+            <form action="{{ route('search') }}">
+                <input type="hidden" name="search" value="">
+                <p class="mt-4 text-muted">No data in cart yet. <button type="submit" class="link-primary bg-transparent border-0">Browse Now</button></p>
+            </form>
         @endif
     </div>
 @endsection

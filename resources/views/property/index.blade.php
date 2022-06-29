@@ -25,7 +25,7 @@
 
                                 <div class="my-2">
                                     <h5 class="card-title fw-bold mb-2">
-                                        {{ "$" . $property->price . ($property->salesType->name == 'rent' ? ' / Month' : '') }}
+                                        {{ "$" . $property->price . ($property->salesType->name == 'Rent' ? ' / Month' : '') }}
                                     </h5>
                                     <h6 class="card-subtitle text-muted">{{ $property->location }}</h6>
                                 </div>
