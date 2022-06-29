@@ -22,7 +22,9 @@ class PageController extends Controller
                 ->orWhereHas('salesType', function ($query) {
                     $query->where('name', 'like', '%' . request('search') . '%');
                 })
-                ->get();
+                ->paginate(4)
+                ->setPath(route('search'))
+                ->appends('search', request('search'));
         } else {
             $properties = Property::all();
         }

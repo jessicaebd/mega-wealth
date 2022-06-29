@@ -27,7 +27,7 @@ Route::controller(PageController::class)
     });
 
 Route::get('/property/buy', [PropertyController::class, 'buy'])->name('buy');
-Route::get('/property/buy', [PropertyController::class, 'rent'])->name('rent');
+Route::get('/property/rent', [PropertyController::class, 'rent'])->name('rent');
 Route::get('/about', [OfficeController::class, 'about'])->name('about_us');
 
 Route::group(['prefix' => 'auth'], function () {

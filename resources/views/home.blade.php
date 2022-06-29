@@ -7,42 +7,49 @@ In this page, guest can Login or Register to the page, this page can be accessed
         <div class="alert alert-success" role="alert">{{ session('success') }}</div>
     @endif
 
-    <div class="container mt-5">
-        <h1>Find Your Future Home</h1>
+    <div class="container-fluid">
+        <div class="header px-4 py-4 my-4 text-center d-flex flex-column justify-content-center align-content-center">
+            <h1 class="display-5 fw-bold text-pink">Find Your Future Home</h1>
 
-        {{-- Search property by location, type, type of sales --}}
-        <div class="row">
-            <div class="col-md-12">
-                <form action="{{ route('search') }}">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for..." name="search">
-                        <span class="input-group-btn">
-                            <button class="btn btn-secondary" type="submit">Go!</button>
-                        </span>
+            <div class="col-md-10 mx-auto">
+                {{-- Search property by location, type, type of sales --}}
+                <div class="row">
+                    <div class="col-md-12">
+                        <form action="{{ route('search') }}">
+                            <div class="input-group">
+                                <input type="text" class="form-control"
+                                    placeholder="Enter a City, Property Type, Buy or Rent..." name="search">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary btn-lg px-4 gap-3" type="submit">Go!</button>
+                                </span>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
+                {{-- End of Search property by location, type, type of sales --}}
             </div>
         </div>
-        {{-- End of Search property by location, type, type of sales --}}
 
         {{-- Buy, Rent, About Us --}}
-        <div class="row mt-5">
-            <div class="col-md-4 d-flex justify-content-center align-content-center">
-                <a href="/property/buy">
-                    <img src="/images/login.png" alt="Buy" class="img-fluid" width="150" height="150">
-                    <h5 class="text-center p-3">Buy</h5>
+        <div class="row my-5">
+            <div class="col-md-4 d-flex justify-content-center align-content-center grow">
+                <a href="{{ route('buy') }}">
+                    <img src="/images/buy.png" alt="Buy" class="img-fluid mb-1" width="250" height="250">
+                    <h5 class="text-center fw-bold">Buy</h5>
                 </a>
             </div>
-            <div class="col-md-4 d-flex justify-content-center align-content-center">
+
+            <div class="col-md-4 d-flex justify-content-center align-content-center grow">
                 <a href="{{ route('rent') }}">
-                    <img src="/images/login.png" alt="Rent" class="img-fluid" width="150" height="150">
-                    <h5 class="text-center p-3">Rent</h5>
+                    <img src="/images/rent.png" alt="Rent" class="img-fluid mb-1" width="250" height="250">
+                    <h5 class="text-center fw-bold">Rent</h5>
                 </a>
             </div>
-            <div class="col-md-4 d-flex justify-content-center align-content-center">
+
+            <div class="col-md-4 d-flex justify-content-center align-content-center grow">
                 <a href="{{ route('about_us') }}">
-                    <img src="/images/login.png" alt="About Us" class="img-fluid" width="150" height="150">
-                    <h5 class="text-center p-3">About Us</h5>
+                    <img src="/images/about.png" alt="About Us" class="img-fluid mb-1" width="250" height="250">
+                    <h5 class="text-center fw-bold">About Us</h5>
                 </a>
             </div>
         </div>

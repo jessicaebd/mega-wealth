@@ -1,7 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
+:root {
+    --pink : #DE1262;
+}
+
 * {
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 body {
@@ -11,6 +17,19 @@ body {
 
 a {
 	text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: #c20054;
+}
+
+.text-pink {
+    color: var(--pink);
+}
+
+.bg-pink {
+    background-color: var(--pink);
 }
 
 .btn-primary {
@@ -21,6 +40,20 @@ a {
 .btn-primary:hover {
     background-color: #c20054;
     border-color: #c20054;
+}
+
+.header {
+    background-image: url("../images/header.jpg");
+    background-size: cover;
+    height: 80vh;
+    width: 100%;
+}
+
+.grow { 
+    transition: all .2s ease-in-out; 
+}
+.grow:hover { 
+    transform: scale(1.1); 
 }
 
 /* .btn-danger {
