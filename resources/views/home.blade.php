@@ -12,7 +12,7 @@
         <div class="col-md-10 mx-auto">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="{{ route('search') }}">
+                    <form action="{{ Illuminate\Support\Facades\Gate::allows('isAdmin') ? route('manage_property') : route('search') }}">
                         <div class="input-group">
                             <input type="text" class="form-control"
                                 placeholder="Enter a City, Property Type, Buy or Rent..." name="search">

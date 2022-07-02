@@ -49,7 +49,7 @@
                                         <a href="{{ route('update_property_form', $property->id) }}"
                                             class="btn btn-primary">Update</a>
 
-                                        @if ($property->propertyStatus->name == 'added to cart')
+                                        @if ($property->propertyStatus->name == 'Added to cart')
                                             <form method="post" action="{{ route('finish_property') }}">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $property->id }}">
@@ -72,4 +72,5 @@
             </div>
 
         </div>
-    @endsection
+    </div>
+@endsection

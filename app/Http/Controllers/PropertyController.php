@@ -12,8 +12,28 @@ class PropertyController extends Controller
 {
     public function index()
     {
-        $properties = Property::paginate(4);
-        return view('property.index', compact('properties'));
+        $search = request('search');
+
+        if ($search) {
+            $properties = Property::where('location', 'like', '%' . request('search') . '%')
+                ->orWhereHas('buildingType', function ($query) {
+                    $query->where('name', 'like', '%' . request('search') . '%');
+                })
+                ->orWhereHas('salesType', function ($query) {
+                    $query->where('name', 'like', '%' . request('search') . '%');
+                });
+                
+        } else {
+            // ga pake all() atau get() supaya returnnya bukan collection, tapi query
+            $properties = Property::where('location', 'like', '%');
+        }
+
+        $properties = $properties->orderBy('id')
+            ->paginate(4)
+            ->setPath(route('manage_property'))
+            ->appends('search', request('search'));
+
+        return view('property.index', compact('properties', 'search'));
     }
 
     public function create()

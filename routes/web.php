@@ -33,19 +33,23 @@ Route::controller(PageController::class)
     });
 
 Route::group(['prefix' => 'auth'], function () {
-    Route::get('login', [LoginController::class, 'index'])->name('login_page');
-    Route::post('login', [LoginController::class, 'login'])->name('login');
-    Route::get('register', [RegisterController::class, 'index'])->name('register_page');
-    Route::post('register', [RegisterController::class, 'register'])->name('register');
+    Route::middleware('GuestMiddleware')->group(function () {
+        Route::get('login', [LoginController::class, 'index'])->name('login_page');
+        Route::post('login', [LoginController::class, 'login'])->name('login');
+        Route::get('register', [RegisterController::class, 'index'])->name('register_page');
+        Route::post('register', [RegisterController::class, 'register'])->name('register');
+    });
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 });
 
 // area khusus member
-Route::controller(UserController::class)
+Route::prefix('cart/')
+    ->controller(UserController::class)
     ->middleware('MemberMiddleware')
     ->group(function () {
-        Route::get('/cart', 'cartIndex')->name('show_cart');
-        Route::post('/cart', 'cartDiscard')->name('discard_cart_item');
+        Route::get('/', 'cartIndex')->name('show_cart');
+        Route::post('/insert', 'cartInsert')->name('insert_cart_item');
+        Route::post('/discard', 'cartDiscard')->name('discard_cart_item');
         Route::get('/checkout', 'cartCheckout')->name('checkout_cart_items');
     });
 

@@ -28,7 +28,9 @@
 <body>
     @include('partials.navbar')
 
-    @yield('content')
+    <main class="mb-5">
+        @yield('content')
+    </main>
 
     @include('partials.footer')
 

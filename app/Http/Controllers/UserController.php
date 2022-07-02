@@ -16,6 +16,19 @@ class UserController extends Controller
         return view('cart', compact('cartItems'));
     }
 
+    public function cartInsert(Request $request) {
+        
+        $user = Auth::user();
+
+        $user->properties()->attach($request->input('id'), ['add_date' => now()]);
+
+        $property = Property::where('id', $request->input('id'))->first();
+        $property->property_status_id = PropertyStatus::where('name', 'Added to cart')->first()->id; // Added to cart
+        $property->save();
+
+        return redirect()->back()->withSuccess('Item added to cart');
+    }
+
     public function cartDiscard(Request $request) {
         $user = Auth::user();
         $user->properties()->detach($request->input('id'));

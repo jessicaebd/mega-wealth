@@ -1,11 +1,11 @@
 <!-- Remove the container if you want to extend the Footer to full width. -->
-<div class="container-fluid mt-5 bg-pink">
+{{-- <div class="container-fluid mt-5 bg-pink"> --}}
     <!-- Footer -->
-    <footer class="text-center text-white bg-pink mt-5">
+    <footer class="footer text-center text-white bg-pink sticky-bottom mt-auto">
         <!-- Grid container -->
-        <div class="container">
+        <div class="container-fluid">
             <!-- Section: Links -->
-            <section class="mt-5">
+            <section>
                 <!-- Grid row-->
                 <div class="row text-center d-flex justify-content-center pt-5">
                     <!-- Grid column -->
@@ -102,5 +102,5 @@
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
-</div>
+{{-- </div> --}}
 <!-- End of .container -->

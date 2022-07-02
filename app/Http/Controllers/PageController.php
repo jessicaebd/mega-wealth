@@ -7,6 +7,7 @@ use App\Models\Property;
 use App\Models\SalesType;
 use Illuminate\Http\Request;
 use App\Models\PropertyStatus;
+use Illuminate\Support\Facades\Gate;
 
 class PageController extends Controller
 {
@@ -18,36 +19,35 @@ class PageController extends Controller
     public function search()
     {
         $search = request('search');
-        $message = "";
 
         if ($search) {
             $properties = Property::where('location', 'like', '%' . request('search') . '%')
+                ->where('property_status_id', '!=', PropertyStatus::where('name', 'Completed')->first()->id)
                 ->orWhereHas('buildingType', function ($query) {
                     $query->where('name', 'like', '%' . request('search') . '%');
                 })
                 ->orWhereHas('salesType', function ($query) {
                     $query->where('name', 'like', '%' . request('search') . '%');
-                })
-                ->paginate(4)
-                ->setPath(route('search'))
-                ->appends('search', request('search'));
+                });          
+        } else {
+            $properties = Property::where('property_status_id', '!=', PropertyStatus::where('name', 'Completed')->first()->id);
         }
 
-        if ($properties->count() == 0) {
-            $properties = Property::paginate(4)
-                ->setPath(route('search'))
-                ->appends('search', request('search'));
-            $message = 'No result found for ' . '\'' . $search . '\'';
-        }
+        $properties = $properties->orderBy('id')
+            ->paginate(4)
+            ->setPath(route('search'))
+            ->appends('search', request('search'));
 
-        return view('search', compact('search', 'properties', 'message'));
+        // route di tombol searchnya langsung kesini, gausah ke property controller, tapi ntar di navbar, 'manage real estates' nya ga nyala
+        // if (Gate::allows('isAdmin')) return view('property.index', compact('properties', 'search'));
+        return view('search', compact('search', 'properties'));
     }
 
     public function buy()
     {
         $properties = Property::where([
             ['sales_type_id', '=', SalesType::where('name', '=', 'Buy')->first()->id],
-            ['property_status_id', '=', PropertyStatus::where('name', '!=', 'Completed')->first()->id],
+            ['property_status_id', '!=', PropertyStatus::where('name', 'Completed')->first()->id],
         ])->paginate(4);
         return view('home.buy', compact('properties'));
     }
@@ -56,7 +56,7 @@ class PageController extends Controller
     {
         $properties = Property::where([
             ['sales_type_id', '=', SalesType::where('name', '=', 'Rent')->first()->id],
-            ['property_status_id', '=', PropertyStatus::where('name', '!=', 'Completed')->first()->id],
+            ['property_status_id', '!=', PropertyStatus::where('name', 'Completed')->first()->id],
         ])->paginate(4);
         return view('home.rent', compact('properties'));
     }

@@ -10,7 +10,7 @@
             <h1 class="text-center mb-5">About Our Company</h1>
             <p class="text-center">Our company was founded at 2008 by our founder Renanda. At that time, we started as law firm specializing in
                 real estate and construction. In 2012, our company expanded our service to real estates with the included
-                service of real estates lawyers. Today, our company have {{ App\Models\Office::count() }} offices
+                service of real estates lawyers. Today, our company has {{ App\Models\Office::count() }} offices
                 throughout the states and is planning to build more.</p>
         </div>
     </div>
