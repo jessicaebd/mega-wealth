@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cookie;
 
 class APIController extends Controller
 {
@@ -43,9 +44,19 @@ class APIController extends Controller
             ]);
         }
 
+        //! If the customer chooses Remember Me, then the website will save the user’s cookies for 5 minutes. 
+        if ($request->remember_me) {
+            Cookie::queue(Cookie::make('token', auth()->user()->id, 5));
+        }
+
+
         return response()->json([
             'status' => 'Login Success',
             'token' => $request->user()->createToken('BearerToken')->accessToken,
         ]);
+    }
+
+    public function get_transaction(Request $request)
+    {
     }
 }
