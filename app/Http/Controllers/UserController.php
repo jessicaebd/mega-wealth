@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Property;
 use App\Models\User;
+use App\Models\Property;
+use App\Models\Transaction;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\PropertyStatus;
 use Illuminate\Support\Facades\Auth;
@@ -40,18 +42,27 @@ class UserController extends Controller
         return redirect()->back()->withSuccess('Cart item discarded');
     }
 
-    public function cartCheckout() {
+    public function cartCheckout(Property $property) {
         $user = Auth::user();
 
-        // untuk masing-masing property,
-        // ubah statusnya jadi 'completed' lalu detach semua user
-        $properties = $user->properties()->get();
-        foreach ($properties as $property) {
-            $property->property_status_id = PropertyStatus::where('name', 'Completed')->first()->id; // completed
-            $property->users()->detach();
-            $property->save();
-        }
+        // ubah status jadi completed, hapus dari keranjang semua user
+        $property->property_status_id = PropertyStatus::where('name', 'Completed')->first()->id;
+        $property->users()->detach();
+        $property->save();
+        
+        // buat transaction
+        $transaction = new Transaction();
+        $transaction->id = Str::uuid();
+        $transaction->transaction_date = now();
+        $transaction->location = $property->location;
+        $transaction->price = $property->price;
+        $transaction->image = $property->image;
+        $transaction->building_type_id = $property->buildingType->id;
+        $transaction->sales_type_id = $property->salesType->id;
+        $transaction->user_id = $user->id;
+        $transaction->property_id = $property->id;
+        $transaction->save();
 
-        return redirect()->route('home')->withSuccess('Checkout successful');
+        return redirect()->route('show_cart')->withSuccess('Checkout successful');
     }
 }

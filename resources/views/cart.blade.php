@@ -41,6 +41,11 @@
                                             <input type="hidden" name="id" value="{{ $item->id }}">
                                             <button type="submit" class="btn btn-secondary">Discard</button>
                                         </form>
+
+                                        <form method="post" action="{{ route('checkout_cart_item', $item->id) }}">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary">Checkout</button>
+                                        </form>
                                     </div>
                                 </div>
 
@@ -51,9 +56,6 @@
 
             </div>
 
-            <div class="d-flex">
-                <a href="{{ route('checkout_cart_items') }}" class="btn btn-primary mx-auto">Checkout</a>
-            </div>
         @else
             <form action="{{ route('search') }}">
                 <input type="hidden" name="search" value="">
