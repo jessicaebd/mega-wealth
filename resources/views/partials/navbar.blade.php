@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadown-sm fixed-top">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,7 +86,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-primary px-3" href="{{ route('register_page') }}">
-                            <span class="text-pink">Register</span>
+                            Register
                         </a>
                     </li>
                 </ul>
