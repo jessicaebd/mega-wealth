@@ -58,9 +58,13 @@
         <div class="d-flex align-items-center">
             @if (Illuminate\Support\Facades\Gate::allows('isMember'))
                 <a class="text-reset me-4 position-relative" href="{{ route('show_cart') }}">
-                    <i class="bi bi-cart-fill fs-5 "></i>
+                    <i class="bi bi-cart-fill fs-5"></i>
                     <span
                         class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ Auth::user()->properties()->count() }}</span>
+                </a>
+
+                <a class="text-reset me-4 position-relative" href="{{ route('show_transaction_history') }}">
+                    <i class="bi bi-receipt fw-bolder fs-5"></i>
                 </a>
             @endif
 

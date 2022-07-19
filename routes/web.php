@@ -47,6 +47,8 @@ Route::prefix('cart/')
     ->controller(UserController::class)
     ->middleware('MemberMiddleware')
     ->group(function () {
+        Route::get('/history', 'showTransactionHistory')->name('show_transaction_history');
+
         Route::get('/', 'cartIndex')->name('show_cart');
         Route::post('/insert', 'cartInsert')->name('insert_cart_item');
         Route::post('/discard', 'cartDiscard')->name('discard_cart_item');
