@@ -12,14 +12,25 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function cartIndex() {
+    public function showTransactionHistory()
+    {
+        $transactions =  Transaction::where('user_id', Auth::user()->id)->get();
+        // Sort transactions by date
+        $transactions = $transactions->sortByDesc('transaction_date');
+
+        return view('history', compact('transactions'));
+    }
+
+    public function cartIndex()
+    {
         $user = Auth::user();
         $cartItems = $user->properties()->get();
         return view('cart', compact('cartItems'));
     }
 
-    public function cartInsert(Request $request) {
-        
+    public function cartInsert(Request $request)
+    {
+
         $user = Auth::user();
 
         $user->properties()->attach($request->input('id'), ['add_date' => now()]);
@@ -31,7 +42,8 @@ class UserController extends Controller
         return redirect()->back()->withSuccess('Item added to cart');
     }
 
-    public function cartDiscard(Request $request) {
+    public function cartDiscard(Request $request)
+    {
         $user = Auth::user();
         $user->properties()->detach($request->input('id'));
 

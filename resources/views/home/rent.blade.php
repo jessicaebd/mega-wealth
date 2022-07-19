@@ -31,12 +31,11 @@
                             </div>
 
                             {{-- ! Kl dah bener ini di buang --}}
-                            <div class="badges-container mb-5">
+                            {{-- <div class="badges-container mb-5">
                                 <span class="badge bg-primary text-light">{{ $property->buildingType->name }}</span>
                                 <span class="badge bg-info text-dark">{{ $property->salesType->name }}</span>
-                                {{-- yang ini ga perlu --}}
                                 <span class="badge bg-dark text-light">{{ $property->propertyStatus->name }}</span>
-                            </div>
+                            </div> --}}
                             {{-- ! Kl dah bener ini di buang --}}
 
                             <div class="d-flex justify-content-center gap-2">

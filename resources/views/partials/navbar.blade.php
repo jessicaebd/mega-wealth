@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadown-sm fixed-top">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,9 +58,13 @@
         <div class="d-flex align-items-center">
             @if (Illuminate\Support\Facades\Gate::allows('isMember'))
                 <a class="text-reset me-4 position-relative" href="{{ route('show_cart') }}">
-                    <i class="bi bi-cart-fill fs-5 "></i>
+                    <i class="bi bi-cart-fill fs-5"></i>
                     <span
                         class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ Auth::user()->properties()->count() }}</span>
+                </a>
+
+                <a class="text-reset me-4 position-relative" href="{{ route('show_transaction_history') }}">
+                    <i class="bi bi-receipt fw-bolder fs-5"></i>
                 </a>
             @endif
 
@@ -86,7 +90,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-primary px-3" href="{{ route('register_page') }}">
-                            <span class="text-pink">Register</span>
+                            Register
                         </a>
                     </li>
                 </ul>

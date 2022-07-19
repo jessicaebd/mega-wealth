@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/property/index.css') }}">
+@endsection
+
 @section('content')
     @if (session('success'))
         <div class="alert alert-success" role="alert">{{ session('success') }}</div>

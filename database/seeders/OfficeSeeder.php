@@ -15,7 +15,7 @@ class OfficeSeeder extends Seeder
     public function run()
     {
         Office::factory(10)
-            ->sequence(fn ($sequence) => ['image' => 'office'.($sequence->index+1).'jpg'])
+            ->sequence(fn ($sequence) => ['image' => 'office' . ($sequence->index + 1) . '.jpg'])
             ->create();
     }
 }
