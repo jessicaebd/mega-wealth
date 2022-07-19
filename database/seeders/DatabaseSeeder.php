@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             BuildingTypeSeeder::class,
             SalesTypeSeeder::class,
             PropertySeeder::class,
-            OfficeSeeder::class
+            OfficeSeeder::class,
+            TransactionSeeder::class,
         ]);
         // tapi seeder untuk pivot class(cart)-nya belum
     }

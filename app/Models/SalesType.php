@@ -15,6 +15,10 @@ class SalesType extends Model
         return $this->hasMany(Property::class);
     }
 
+    public function transactions() {
+        return $this->hasMany(Transaction::class);
+    }
+
     public function getNameAttribute($value)
     {
         return ucfirst($value);
