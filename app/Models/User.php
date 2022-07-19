@@ -54,4 +54,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Property::class)
             ->withPivot('add_date');
     }
+
+    public function transactions() {
+        return $this->hasMany(Transaction::class);
+    }
 }
