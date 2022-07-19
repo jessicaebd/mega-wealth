@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Database\Eloquent\Collection;
 
 class APIController extends Controller
 {
@@ -58,5 +60,36 @@ class APIController extends Controller
 
     public function get_transaction(Request $request)
     {
+        $request->validate([
+            'email' => 'required|string|email',
+        ]);
+
+        if ($request->email != auth()->user()->email) {
+            return response()->json([
+                'status' => 'false',
+                'message' => 'Email Unauthenticated',
+            ]);
+        }
+
+        $transactions = Transaction::where('user_id', auth()->user()->id)->get();
+        $data = new Collection();
+        foreach ($transactions as $transaction) {
+            $temp = [
+                'transaction_date' => $transaction->transaction_date,
+                'transaction_id' => $transaction->id,
+                'user_id' => $transaction->user_id,
+                'type_of_sale' => $transaction->salesType->name,
+                'building_type' => $transaction->buildingType->name,
+                'price' => $transaction->price,
+                'location' => $transaction->location,
+                'image_path' => $transaction->image,
+            ];
+            $data->push($temp);
+        }
+
+        return response()->json([
+            'transactions' => $data,
+            'user_id' => auth()->user()->id,
+        ]);
     }
 }

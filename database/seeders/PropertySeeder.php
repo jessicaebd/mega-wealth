@@ -21,17 +21,17 @@ class PropertySeeder extends Seeder
             ->randPropertyStatus()
             ->randBuildingType()
             ->randSalesType()
-            ->sequence(fn ($sequence) => ['image' => 'property'.($sequence->index+1).'jpg'])
+            ->sequence(fn ($sequence) => ['image' => 'property' . ($sequence->index + 1) . '.jpg'])
             ->create();
 
         // untuk property yang statusnya added to cart, kita bikin entry pivot tablenya
         foreach (Property::where('property_status_id', 2)->get() as $property) {
             $maxUser = User::count() - 2; // jumlah admin
             $addedUsers = rand(1, $maxUser); // wajib ada (min 1), karena statusnya added to cart
-            
+
             // admin tidak bisa add to cart
             $users = User::where('role_id', '!=', 1)->get()->random($addedUsers);
-            
+
             foreach ($users as $user) {
                 $property->users()->attach($user->id, ['add_date' => now()]);
             }
