@@ -22,7 +22,6 @@ class PropertyController extends Controller
                 ->orWhereHas('salesType', function ($query) {
                     $query->where('name', 'like', '%' . request('search') . '%');
                 });
-                
         } else {
             // ga pake all() atau get() supaya returnnya bukan collection, tapi query
             $properties = Property::where('location', 'like', '%');
@@ -91,7 +90,8 @@ class PropertyController extends Controller
             'buildingType' => 'required|exists:App\Models\BuildingType,id',
             'salesType' => 'required|exists:App\Models\SalesType,id',
             'price' => 'required|min:1',
-            'location' => 'required'
+            'location' => 'required',
+            'propertyStatus' => 'required|exists:App\Models\PropertyStatus,id',
         ]);
 
         $property = Property::find($request->input('id'));
@@ -99,6 +99,7 @@ class PropertyController extends Controller
         $property->price = $request->input('price');
         $property->building_type_id = $request->input('buildingType');
         $property->sales_type_id = $request->input('salesType');
+        $property->property_status_id = $request->input('propertyStatus');
 
         if ($request->image !== NULL) {
             $request->validate([

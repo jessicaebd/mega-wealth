@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Property;
 use App\Models\User;
+use App\Models\Property;
+use App\Models\Transaction;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\PropertyStatus;
-use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -64,6 +65,19 @@ class UserController extends Controller
             $property->property_status_id = PropertyStatus::where('name', 'Completed')->first()->id; // completed
             $property->users()->detach();
             $property->save();
+
+            // Add to transaction history
+            $transaction = new Transaction();
+            $transaction->id = Str::uuid();
+            $transaction->transaction_date = now();
+            $transaction->location = $property->location;
+            $transaction->price = $property->price;
+            $transaction->image = $property->image;
+            $transaction->building_type_id = $property->building_type_id;
+            $transaction->sales_type_id = $property->sales_type_id;
+            $transaction->user_id = $user->id;
+            $transaction->property_id = $property->id;
+            $transaction->save();
         }
 
         return redirect()->route('home')->withSuccess('Checkout successful');
