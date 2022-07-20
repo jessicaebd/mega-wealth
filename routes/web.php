@@ -52,7 +52,7 @@ Route::prefix('cart/')
         Route::get('/', 'cartIndex')->name('show_cart');
         Route::post('/insert', 'cartInsert')->name('insert_cart_item');
         Route::post('/discard', 'cartDiscard')->name('discard_cart_item');
-        Route::get('/checkout', 'cartCheckout')->name('checkout_cart_items');
+        Route::post('/checkout/{property}', 'cartCheckout')->name('checkout_cart_item');
     });
 
 Route::prefix('admin/office')
@@ -78,6 +78,7 @@ Route::prefix('admin/property')
         Route::post('/add', 'store')->name('store_property');
         Route::get('/edit/{property}', 'edit')->name('update_property_form');
         Route::put('/edit', 'update')->name('update_property');
+        Route::post('/up-for-rent', 'upForRent')->name('up_for_rent');
         Route::delete('/delete/{property}', 'destroy')->name('delete_property');
         Route::post('/finish', 'finish')->name('finish_property');
     });

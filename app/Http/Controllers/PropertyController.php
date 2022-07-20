@@ -7,6 +7,7 @@ use App\Models\SalesType;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\PropertyStatus;
+use App\Models\Transaction;
 
 class PropertyController extends Controller
 {
@@ -117,6 +118,14 @@ class PropertyController extends Controller
         return redirect()->route('manage_property')->withSuccess('Property data updated');
     }
 
+    public function upForRent(Request $request)
+    {
+        $property = Property::find($request->input('id'));
+        $property->property_status_id = PropertyStatus::where('name', 'Open')->first()->id;
+        $property->save();
+        return redirect()->back()->withSuccess('Property is now up for rent');
+    }
+
     public function finish(Request $request)
     {
         // @dd($request);
@@ -131,6 +140,8 @@ class PropertyController extends Controller
 
     public function destroy(Property $property)
     {
+        if (Transaction::where('property_id', $property->id)->get()->count() > 0)
+            return redirect()->back()->withError('Cannot delete property');
         $property->users()->detach();
         $property->delete();
         return redirect()->back()->withSuccess('Property deleted');

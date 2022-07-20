@@ -29,7 +29,7 @@
 
     {{-- Buy, Rent, About Us --}}
     <div class="container mt-4">
-        <div class="row my-5">
+        <div class="row my-5 d-flex justify-content-center">
             <div class="col-md-4 d-flex justify-content-center align-content-center grow">
                 <a href="{{ route('buy') }}">
                     <img src="/images/buy.png" alt="Buy" class="img-fluid mb-1" width="250" height="250">
@@ -44,12 +44,15 @@
                 </a>
             </div>
 
-            <div class="col-md-4 d-flex justify-content-center align-content-center grow">
-                <a href="{{ route('about_us') }}">
-                    <img src="/images/about.png" alt="About Us" class="img-fluid mb-1" width="250" height="250">
-                    <h5 class="text-center fw-bold">About Us</h5>
-                </a>
-            </div>
+            @if ( !(Illuminate\Support\Facades\Gate::allows('isAdmin')) )
+                <div class="col-md-4 d-flex justify-content-center align-content-center grow">
+                    <a href="{{ route('about_us') }}">
+                        <img src="/images/about.png" alt="About Us" class="img-fluid mb-1" width="250" height="250">
+                        <h5 class="text-center fw-bold">About Us</h5>
+                    </a>
+                </div>
+            @endif
+
         </div>
     </div>
     {{-- End of Buy, Rent, About Us --}}
