@@ -42,7 +42,11 @@
                 @endforeach
             </div>
         @else
-            <h1>Kosong</h1>
+            <form action="{{ route('search') }}">
+                <input type="hidden" name="search" value="">
+                <p class="mt-4 text-muted">No data in transaction history yet. <button type="submit"
+                        class="link-primary bg-transparent border-0">Browse Now</button></p>
+            </form>
         @endif
     </div>
 @endsection

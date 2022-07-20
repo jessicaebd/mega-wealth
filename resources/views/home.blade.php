@@ -3,6 +3,8 @@
 @section('content')
     @if (session('success'))
         <div class="alert alert-success" role="alert">{{ session('success') }}</div>
+    @elseif (session('error'))
+        <div class="alert alert-danger" role="alert">{{ session('error') }}</div>
     @endif
 
     <div class="header px-4 py-4 mb-5 text-center d-flex flex-column justify-content-center align-content-center">
@@ -12,7 +14,8 @@
         <div class="col-md-10 mx-auto">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="{{ Illuminate\Support\Facades\Gate::allows('isAdmin') ? route('manage_property') : route('search') }}">
+                    <form
+                        action="{{ Illuminate\Support\Facades\Gate::allows('isAdmin') ? route('manage_property') : route('search') }}">
                         <div class="input-group">
                             <input type="text" class="form-control"
                                 placeholder="Enter a City, Property Type, Buy or Rent..." name="search">
@@ -44,7 +47,7 @@
                 </a>
             </div>
 
-            @if ( !(Illuminate\Support\Facades\Gate::allows('isAdmin')) )
+            @if (!Illuminate\Support\Facades\Gate::allows('isAdmin'))
                 <div class="col-md-4 d-flex justify-content-center align-content-center grow">
                     <a href="{{ route('about_us') }}">
                         <img src="/images/about.png" alt="About Us" class="img-fluid mb-1" width="250" height="250">

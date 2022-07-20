@@ -23,7 +23,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             if (Auth::user()->role->name == 'admin') return redirect()->route('home');
-            return redirect()->intended('/');
+            return redirect()->intended('/')->withSuccess('Welcome back!');
         }
 
         return redirect()->back()->with('error', 'Login Failed!');
@@ -34,6 +34,6 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('login_page');
+        return redirect()->route('login_page')->withSuccess('Logout Successfully!');
     }
 }

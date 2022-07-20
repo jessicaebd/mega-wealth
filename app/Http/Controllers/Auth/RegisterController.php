@@ -33,7 +33,7 @@ class RegisterController extends Controller
         ]);
 
         if ($user) {
-            return redirect()->route('home');
+            return redirect()->route('home')->withSuccess('Register Successfully!');
         }
 
         return redirect()->back()->with('error', 'Register Failed!');

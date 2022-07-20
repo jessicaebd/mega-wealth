@@ -1,6 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
+    @if (session('success'))
+        <div class="alert alert-success" role="alert">{{ session('success') }}</div>
+    @endif
+
     <div class="container py-4">
         <div class="row d-flex align-items-center">
             <div class="col-6 p-5">
