@@ -22,7 +22,7 @@
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email"
+                            <input type="email" class="form-control" id="email" name="email" value="{{ \Illuminate\Support\Facades\Cookie::get('LoginCookie') ?? '' }}"
                                 placeholder="Enter your email address here...">
                         </div>
 
@@ -33,7 +33,7 @@
                         </div>
 
                         <div class="mb-4 form-check">
-                            <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                            <input type="checkbox" class="form-check-input" id="remember" name="remember" {{ \Illuminate\Support\Facades\Cookie::get('LoginCookie') !== NULL ? 'checked' : ''}}>
                             <label class="form-check-label" for="remember">Remember me</label>
                         </div>
 
