@@ -10,7 +10,7 @@
     @endif
 
     <div class="container mt-4">
-        <h5 class="fw-bold mb-4">Showing Search Result for Sale</h5>
+        <h5 class="fw-bold mb-4">Showing Properties for Sale</h5>
 
         <div class="row g-2">
             @foreach ($properties as $property)
@@ -38,7 +38,7 @@
                             </div> --}}
                             {{-- ! Kl dah bener ini di buang --}}
 
-                            <div class="d-flex flex-row flex-wrap justify-content-center gap-2 action-buttons-wrapper">
+                            <div class="d-flex flex-row flex-wrap justify-content-center gap-2 action-buttons-wrapper mt-3 mb-1">
                                 @if (Auth::user() &&
                                     Auth::user()->properties()->where('id', $property->id)->exists())
                                     <form method="post" action="{{ route('discard_cart_item') }}">
