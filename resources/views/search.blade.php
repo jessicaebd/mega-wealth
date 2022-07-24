@@ -34,9 +34,6 @@
                                         <span
                                             class="badge bg-primary text-light">{{ $property->buildingType->name }}</span>
                                         <span class="badge bg-info text-dark">{{ $property->salesType->name }}</span>
-                                        {{-- ini ga perlu, user ga perlu tau --}}
-                                        <span
-                                            class="badge bg-dark text-light">{{ $property->propertyStatus->name }}</span>
                                     </div>
 
                                     <div class="d-flex flex-row justify-content-center gap-2">
